@@ -18,16 +18,16 @@ export default function AuthForm() {
     try {
       if (mode === 'signin') {
         await signIn(email, password);
-        toast.success('Successfully signed in!');
+        toast.success('로그인에 성공했습니다!');
       } else if (mode === 'signup') {
         await signUp(email, password, inviteCode);
-        toast.success('Successfully signed up!');
+        toast.success('회원가입에 성공했습니다!');
       } else {
         await resetPassword(email);
-        toast.success('Password reset email sent!');
+        toast.success('비밀번호 재설정 이메일을 발송했습니다!');
       }
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'An error occurred');
+      toast.error(error instanceof Error ? error.message : '오류가 발생했습니다');
     } finally {
       setLoading(false);
     }
@@ -38,9 +38,9 @@ export default function AuthForm() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            {mode === 'signin' ? 'Sign in to Talkie' :
-             mode === 'signup' ? 'Create your account' :
-             'Reset your password'}
+            {mode === 'signin' ? 'Talkie에 로그인' :
+             mode === 'signup' ? '계정 만들기' :
+             '비밀번호 재설정'}
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -53,7 +53,7 @@ export default function AuthForm() {
                 type="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder="이메일 주소"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -67,7 +67,7 @@ export default function AuthForm() {
                   type="password"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
+                  placeholder="비밀번호"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -82,7 +82,7 @@ export default function AuthForm() {
                   type="text"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Invite Code"
+                  placeholder="초대 코드"
                   value={inviteCode}
                   onChange={(e) => setInviteCode(e.target.value)}
                 />
@@ -96,10 +96,10 @@ export default function AuthForm() {
               disabled={loading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              {loading ? 'Processing...' :
-               mode === 'signin' ? 'Sign in' :
-               mode === 'signup' ? 'Sign up' :
-               'Reset password'}
+              {loading ? '처리 중...' :
+               mode === 'signin' ? '로그인' :
+               mode === 'signup' ? '회원가입' :
+               '비밀번호 재설정'}
             </button>
           </div>
 
@@ -118,7 +118,7 @@ export default function AuthForm() {
                   className="text-sm text-indigo-600 hover:text-indigo-500"
                   onClick={() => setMode('reset')}
                 >
-                  Forgot password?
+                  비밀번호를 잊으셨나요?
                 </button>
               </>
             ) : (
@@ -127,7 +127,7 @@ export default function AuthForm() {
                 className="text-sm text-indigo-600 hover:text-indigo-500"
                 onClick={() => setMode('signin')}
               >
-                Back to sign in
+                로그인으로 돌아가기
               </button>
             )}
           </div>
